@@ -811,11 +811,7 @@ public class TimePickerDialog extends AppCompatDialogFragment implements
             view.findViewById(R.id.mdtp_separator_seconds).setVisibility(View.GONE);
         }
 
-        // Disable minutes picker
-        if (!mEnableMinutes) {
-            mMinuteSpaceView.setVisibility(View.GONE);
-            view.findViewById(R.id.mdtp_separator).setVisibility(View.GONE);
-        }
+        // last
 
         // Center stuff depending on what's visible
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
@@ -916,12 +912,13 @@ public class TimePickerDialog extends AppCompatDialogFragment implements
             TextView separatorView = view.findViewById(R.id.mdtp_separator);
             separatorView.setLayoutParams(paramsSeparator);
         } else if (!mEnableMinutes && !mEnableSeconds) {
-            // center the hour
-            RelativeLayout.LayoutParams paramsHour = new RelativeLayout.LayoutParams(
+            // center first separator
+            RelativeLayout.LayoutParams paramsSeparator = new RelativeLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
             );
-            paramsHour.addRule(RelativeLayout.CENTER_IN_PARENT);
-            mHourSpaceView.setLayoutParams(paramsHour);
+            paramsSeparator.addRule(RelativeLayout.CENTER_IN_PARENT);
+            TextView separatorView = view.findViewById(R.id.mdtp_separator);
+            separatorView.setLayoutParams(paramsSeparator);
 
             if (!mIs24HourMode) {
                 RelativeLayout.LayoutParams paramsAmPm = new RelativeLayout.LayoutParams(
